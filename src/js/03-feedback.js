@@ -20,14 +20,19 @@ function handlerInput() {
 function handlerSubmit(e) {
   e.preventDefault();
 
-  localStorage.removeItem('feedback-form-state');
-
   const { email, message } = e.currentTarget.elements;
+
+  if (!(email.value && message.value)) {
+    alert('Fill in all form fields!');
+    return;
+  }
 
   const formSubmit = {
     email: email.value,
     message: message.value,
   };
+
+  localStorage.removeItem('feedback-form-state');
 
   console.log(formSubmit);
 
